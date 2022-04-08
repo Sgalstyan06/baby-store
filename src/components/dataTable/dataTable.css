@@ -1,0 +1,14 @@
+.ui.image.product-icon{
+    width: auto;
+    height: 90px;
+     
+    }
+
+.grid-table {
+    position: relative;
+}
+
+.grid-table>.row{
+    height: 120px;
+}
+
