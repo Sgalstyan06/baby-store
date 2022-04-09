@@ -4,6 +4,8 @@ import productImg from "../../img/img1.jpg";
 import "./dataTable.css";
 
 function PendingTable({ list, changeStatus }) {
+  console.log("list",list);
+  
   return (
     <>
       {list &&

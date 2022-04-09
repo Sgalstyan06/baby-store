@@ -3,6 +3,7 @@ import {
   getOrderByStatus,
   authoriseUser,
   getProducts,
+  getAllOrders,
   changeOrderStatus,
   imgUpdate,
 } from "../../services/api";
@@ -27,11 +28,11 @@ function Dashboard() {
     try {
       const token = await getAccessTokenSilently();
       let data = null;
-      
+
       if (user && user[`${domainName}roles`].includes(ADMIN)) {
         const dataResult = await Promise.all([
           getProducts(),
-          getOrderByStatus(user.sub, token, UNPAID),
+          getAllOrders(user.sub, token, UNPAID),
         ]);
         console.log("dataResult", dataResult);
         if (dataResult && dataResult[1] && dataResult[1].status === 401) {
@@ -42,6 +43,7 @@ function Dashboard() {
             allProducts: dataResult[0],
             pendingProducts: dataResult[1],
           }));
+          console.log("adminData", adminData);
         }
       } else {
         data = await getOrders(user.sub, token);
@@ -97,7 +99,7 @@ function Dashboard() {
   function handleDismiss() {
     setResponseInfo("");
   }
-
+  console.log("adminData", adminData);
   return (
     <div className="dashboard ui container">
       {responseInfo.length > 0 ? (

@@ -28,11 +28,8 @@ function CardItem({ description, image, name, price, item }) {
           <Button as={Link} to="/login" color="green" inverted floated="right">
             BUY
           </Button>
-        )}
-        {/* <a>
-              <Icon name='user' />
-              22 Friends
-            </a> */}
+        )} 
+        
       </Card.Content>
     </Card>
   );

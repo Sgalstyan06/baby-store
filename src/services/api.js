@@ -66,7 +66,7 @@ export async function changeOrderStatus(user_id, token, order_id, status) {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
-          userId: user_id,
+          user_id: user_id,
         },
       }
     );
@@ -130,6 +130,8 @@ export async function confirmOrder(user, product, token, option) {
 }
 
 export async function confirmAddProduct(productObj, userId, token) {
+  console.log("userId ",userId);
+  console.log("productObj",productObj);
   try {
     const response = await fetch(`${apiURL}product`, {
       method: "POST",
