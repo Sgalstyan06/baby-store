@@ -15,6 +15,7 @@ import AddProduct from "../products/AddProduct";
 import Tabs from "../tabs/Tabs";
 import { ADMIN, UNPAID } from "../../services/constants";
 import DataTable from "../dataTable/DataTable";
+import DataTableForUsser from "../dataTable/DataTableForUsser"; 
 
 function Dashboard() {
   const { error, isAuthenticated, isLoading, user, getAccessTokenSilently } =
@@ -28,7 +29,7 @@ function Dashboard() {
     try {
       const token = await getAccessTokenSilently();
       let data = null;
-
+      // console.log("user",user);
       if (user && user[`${domainName}roles`].includes(ADMIN)) {
         const dataResult = await Promise.all([
           getProducts(),
@@ -47,6 +48,8 @@ function Dashboard() {
         }
       } else {
         data = await getOrders(user.sub, token);
+        console.log("user as a user ",user);
+        console.log("data",data);
         if (data && Array.isArray(data)) {
           if (data.length !== 0) setOrderList(data);
         } else if (data && data.status === 401) {
@@ -74,6 +77,7 @@ function Dashboard() {
         order_id,
         status
       );
+      orderShow();//I put this function call
       console.log("changeResult", changeResult);
     } catch (error) {
       console.log("sxal es arel");
@@ -120,7 +124,7 @@ function Dashboard() {
           />
         </>
       ) : (
-        <DataTable list={orderList} />
+        <DataTableForUsser list={orderList} />
       )}
     </div>
   );

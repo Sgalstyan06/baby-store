@@ -4,14 +4,16 @@ import productImg from "../../img/img1.jpg";
 import "./dataTable.css";
 
 function PendingTable({ list, changeStatus }) {
-  console.log("list",list);
+  console.log("liststatus",list);
+  // console.log("list product", list.product.name);
+  
   
   return (
     <>
       {list &&
         list.length > 0 &&
         list.map((item) => {
-          console.log("item", item);
+          console.log("item", item.orderStatus);
           return (
             <Grid className="grid-table" key={nanoid()}>
               <Grid.Row>

@@ -11,7 +11,7 @@ const Cards = () => {
       setResult(param);
     });
   }, []);
-
+console.log("allproducts",result);
   return (
     <div className="ui stackable three column grid productItems">
       {result.map((item) => {
@@ -20,7 +20,7 @@ const Cards = () => {
             item={item}
             key={item.id}
             description={item?.description.comment || ""}
-            image={item.image}
+            image={item.img[0].imagePath}
             name={item.name}
             price={item.price}
           />
