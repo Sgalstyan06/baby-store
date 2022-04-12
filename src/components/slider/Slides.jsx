@@ -22,9 +22,7 @@ function Slides() {
           <Button
             data-testid="button-prev"
             className="small left"
-            onClick={() => {
-              handlePrev();
-            }}
+            onClick={handlePrev}
           >
             <Icon name="chevron left" />
           </Button>
@@ -32,9 +30,7 @@ function Slides() {
           <Button
             data-testid="button-next"
             className="small right"
-            onClick={() => {
-              handleNext();
-            }}
+            onClick={handleNext}
           >
             <Icon name="chevron right" />
           </Button>

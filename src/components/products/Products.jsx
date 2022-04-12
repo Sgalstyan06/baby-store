@@ -1,12 +1,12 @@
 import { Label } from "semantic-ui-react";
+import Cards from "../card/Cards";
 
 function Products() {
-  return <Label>hello 
-      helloddfd
-       dsfsdf df 
-       dsfsdf dfdg 
-       dggg fff f f dtr
-       </Label>;
+  return (
+    <Label>
+      <Cards />
+    </Label>
+  );
 }
 
 export default Products;

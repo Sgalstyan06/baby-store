@@ -20,6 +20,7 @@ function DataTable({ list, uploadImg }) {
   // function onFormSubmit() {
 
   // }
+  console.log("list",list);
   return (
     <>
       {list &&
@@ -44,8 +45,8 @@ function DataTable({ list, uploadImg }) {
                   <Segment.Inline>
                     <List.Content>
                       <List.Header>{item.name} </List.Header>
-                      {item.price}
-                      <Segment.Inline>"item.orderStatus"</Segment.Inline>
+                      {item.price}{item.currency}
+                      {/* <Segment.Inline>"item.orderStatus"</Segment.Inline> */}
                       <form
                         onSubmit={(e) => {
                           e.preventDefault();
