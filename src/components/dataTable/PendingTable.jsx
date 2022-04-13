@@ -1,18 +1,35 @@
 import { nanoid } from "nanoid";
+import { useEffect, useState } from "react";
+import {  Pagination } from "semantic-ui-react";
+
 import { Grid, Segment, List, Image, Dropdown } from "semantic-ui-react";
 import productImg from "../../img/img1.jpg";
 import "./dataTable.css";
 
 function PendingTable({ list, changeStatus }) {
+  const [productsByPage, setProductsByPage] = useState([]);
+  const [start, setStart] = useState(0);
+  const [result, setResult] = useState([]);
+
+  const pageDevider = 4;
   console.log("liststatus",list);
   // console.log("list product", list.product.name);
-  
+  useEffect(() => {
+    setProductsByPage(list.slice(start, start + pageDevider));
+  }, [start, result]);
+  useEffect(()=>{
+    if(list && list.length>0)setResult(list);
+  },[list])
+  function goToPage(e, data) {
+    console.log(data.activePage);
+    setStart(data.activePage);
+  }
   
   return (
     <>
-      {list &&
-        list.length > 0 &&
-        list.map((item) => {
+      {productsByPage &&
+        productsByPage.length > 0 &&
+        productsByPage.map((item) => {
           console.log("item", item.orderStatus);
           return (
             <Grid className="grid-table" key={nanoid()}>
@@ -77,6 +94,15 @@ function PendingTable({ list, changeStatus }) {
             </Grid>
           );
         })}
+        <div className="pagination-container">
+        {/* semantic pagination */}
+        <Pagination
+          defaultActivePage={1}
+          secondary
+          onPageChange={goToPage}
+          totalPages={Math.ceil(result.length / pageDevider)}
+        />
+      </div>
     </>
   );
 }

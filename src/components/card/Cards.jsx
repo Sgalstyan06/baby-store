@@ -4,11 +4,11 @@ import { getData, getProducts } from "../../services/api";
 import CardItem from "./CardItem";
 import "./cards.css";
 
-const Cards = () => {
+const Cards = ({pageDevider}) => {
   const [result, setResult] = useState([]);
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
-  const limited = 2;
+  
   
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Cards = () => {
     })();
   }, []);
   useEffect(() => {
-    setProductsByPage(result.slice(start, start + limited));
+    setProductsByPage(result.slice(start, start + pageDevider));
   }, [start, result]);
 
   function goToPage(e, data) {
@@ -45,11 +45,12 @@ const Cards = () => {
         })}
       
       <div className="pagination-container">
+        {/* semantic pagination */}
         <Pagination
           defaultActivePage={1}
           secondary
           onPageChange={goToPage}
-          totalPages={Math.ceil(result.length / 2)}
+          totalPages={Math.ceil(result.length / pageDevider)}
         />
       </div>
     </div>

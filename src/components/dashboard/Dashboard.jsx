@@ -21,7 +21,6 @@ function Dashboard() {
   const { error, isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
   const [orderList, setOrderList] = useState([]);
-
   const [adminData, setAdminData] = useState({});
   const [responseInfo, setResponseInfo] = useState("");
 

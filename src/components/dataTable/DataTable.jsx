@@ -1,31 +1,52 @@
 import productImg from "../../img/img1.jpg";
 import "./dataTable.css";
 import { nanoid } from "nanoid";
-import { Grid, Segment, List, Image, Dropdown, Item } from "semantic-ui-react";
+import {
+  Grid,
+  Segment,
+  List,
+  Image,
+  Pagination,
+  Dropdown,
+  Item,
+} from "semantic-ui-react";
 import "./dataTable.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 
 function DataTable({ list, uploadImg }) {
   const [imgFile, setImgFile] = useState();
-
-  // console.log(list);
+  const [productsByPage, setProductsByPage] = useState([]);
+  const [start, setStart] = useState(0);
+  const [result, setResult] = useState([]);
+  const pageDevider = 5;
+  
   function onChange(e) {
     console.log(e.target.files);
     setImgFile(e.target.files[0]);
   }
+  useEffect(()=>{
+    if(list && list.length>0)setResult(list);
+  },[list])
+
   useEffect(() => {
     console.log(imgFile);
   }, [imgFile]);
-
-  // function onFormSubmit() {
-
-  // }
-  console.log("list",list);
+  useEffect(() => {
+    if (result && result.length > 0)
+      setProductsByPage(result.slice(start, start + pageDevider));
+  }, [start, result]);
+  
+  
+  console.log("result", list);
+  function goToPage(e, data) {
+    console.log(data.activePage);
+    setStart(data.activePage);
+  }
   return (
     <>
-      {list &&
-        list.length > 0 &&
-        list.map((item) => {
+      {productsByPage &&
+        productsByPage.length > 0 &&
+        productsByPage.map((item) => {
           return (
             <Grid className="grid-table" key={nanoid()}>
               <Grid.Row>
@@ -37,7 +58,9 @@ function DataTable({ list, uploadImg }) {
                     <Image
                       avatar
                       className="product-icon"
-                      src={item.img[0]?.imagePath || productImg}
+                      src={
+                        item.img[item.img.length - 1]?.imagePath || productImg
+                      }
                     />
                   </Segment.Inline>
                 </Grid.Column>
@@ -45,7 +68,8 @@ function DataTable({ list, uploadImg }) {
                   <Segment.Inline>
                     <List.Content>
                       <List.Header>{item.name} </List.Header>
-                      {item.price}{item.currency}
+                      {item.price}
+                      {item.currency}
                       {/* <Segment.Inline>"item.orderStatus"</Segment.Inline> */}
                       <form
                         onSubmit={(e) => {
@@ -63,6 +87,15 @@ function DataTable({ list, uploadImg }) {
             </Grid>
           );
         })}
+      <div className="pagination-container">
+        {/* semantic pagination */}
+        <Pagination
+          defaultActivePage={1}
+          secondary
+          onPageChange={goToPage}
+          totalPages={Math.ceil(result.length / pageDevider)}
+        />
+      </div>
     </>
   );
 }

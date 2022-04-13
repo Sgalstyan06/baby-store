@@ -36,7 +36,7 @@ function DataTableForUsser({ list }) {
                     <Image
                       avatar
                       className="product-icon"
-                      src={item.product.img[0]?.imagePath || productImg}
+                      src={item.product.img[item.product.img.length-1]?.imagePath || productImg}
                     />
                   </Segment.Inline>
                 </Grid.Column>

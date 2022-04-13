@@ -4,10 +4,11 @@ import slidesData from "../../services/slideData.js";
 import "../home/home.css";
 
 function Home() {
+  let countPageProduct = 4;
   return (
     <div className="home ui container">
       <Slide slides={slidesData()} />
-      <Cards />
+      <Cards pageDevider={countPageProduct}/>
     </div>
   );
 }
