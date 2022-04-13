@@ -85,6 +85,7 @@ img {
   @media screen and (max-width: 768px) {
 	#slide{
 		height: 150px;
+		
 	}
 	#slide .slideDescription{
 		display: none;

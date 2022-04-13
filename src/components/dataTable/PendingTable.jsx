@@ -30,7 +30,7 @@ function PendingTable({ list, changeStatus }) {
       {productsByPage &&
         productsByPage.length > 0 &&
         productsByPage.map((item) => {
-          console.log("item", item.orderStatus);
+          console.log("item", item);
           return (
             <Grid className="grid-table" key={nanoid()}>
               <Grid.Row>
@@ -46,7 +46,7 @@ function PendingTable({ list, changeStatus }) {
                 <Grid.Column width="6">
                   <Segment.Inline>
                     <List.Content>
-                      <List.Header>{item.product.name} </List.Header>
+                      <List.Header>{item.id} {item.product.name} </List.Header>
                       {item.product.price} {item.address} {item.phone}
                     </List.Content>
                   </Segment.Inline>

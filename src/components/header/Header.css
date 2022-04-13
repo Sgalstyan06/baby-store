@@ -5,3 +5,7 @@
 .customHeader, .pusher {
     height: 60px;
 }
+
+#drop-down{
+    z-index: 9999;
+}
