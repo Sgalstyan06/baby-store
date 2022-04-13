@@ -1,48 +1,37 @@
 import { useEffect, useState } from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Pagination } from "semantic-ui-react";
 import { getData, getProducts } from "../../services/api";
 import CardItem from "./CardItem";
 import "./cards.css";
 
 const Cards = () => {
   const [result, setResult] = useState([]);
-  const [index, setIndex] = useState(0);
+  const [productsByPage, setProductsByPage] = useState([]);
+  const [start, setStart] = useState(0);
+  const limited = 2;
+  
 
   useEffect(() => {
     (async function createPageinashion() {
-      let arr = await getProducts();
-      console.log("arr", arr);
-      let newArr = [];
-      let insidArr = [];
-      let countEl = 2;//put number of product on pagination page
-      arr.forEach((item, index, array) => {
-        insidArr.push(item);
-        if (index === countEl) {
-          countEl += 3;
-          newArr.push(insidArr);
-          insidArr = [];
-        }
-        if (index === array.length - 1) {
-          if (insidArr.length > 0) newArr.push(insidArr);
-        }
-      });
-      setResult(newArr);
+      let data = await getProducts();
+      setResult(data);
     })();
   }, []);
+  useEffect(() => {
+    setProductsByPage(result.slice(start, start + limited));
+  }, [start, result]);
 
-  function nextListProducts() {
-    index !== result.length - 1 ? setIndex(index=>index+1) : setIndex(0);
-  }
-
-  function prevListProducts() {
-    index === 0 ? setIndex(result.length - 1) : setIndex(index=>index-1);
+  function goToPage(e, data) {
+    console.log(data.activePage);
+    setStart(data.activePage);
   }
   
+  console.log("result", result);
   return (
     <div className="ui stackable three column grid productItems">
-      {result &&
-        result.length > 0 &&
-        result[index].map((item) => {
+      {productsByPage &&
+        productsByPage.length > 0 &&
+        productsByPage.map((item) => {
           return (
             <CardItem
               item={item}
@@ -54,8 +43,15 @@ const Cards = () => {
             />
           );
         })}
-      <Button onClick={nextListProducts}>next</Button>
-      <Button onClick={prevListProducts}>prev</Button>
+      
+      <div className="pagination-container">
+        <Pagination
+          defaultActivePage={1}
+          secondary
+          onPageChange={goToPage}
+          totalPages={Math.ceil(result.length / 2)}
+        />
+      </div>
     </div>
   );
 };

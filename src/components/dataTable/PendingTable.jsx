@@ -30,7 +30,7 @@ function PendingTable({ list, changeStatus }) {
                   <Segment.Inline>
                     <List.Content>
                       <List.Header>{item.product.name} </List.Header>
-                      {item.product.price}
+                      {item.product.price} {item.address} {item.phone}
                     </List.Content>
                   </Segment.Inline>
                 </Grid.Column>

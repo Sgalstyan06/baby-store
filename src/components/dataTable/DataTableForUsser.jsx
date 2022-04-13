@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 function DataTableForUsser({ list }) {
   const [imgFile, setImgFile] = useState();
 
-  // console.log(list);
+  console.log("pend-list",list);
   function onChange(e) {
     console.log(e.target.files);
     setImgFile(e.target.files[0]);
