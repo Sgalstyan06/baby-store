@@ -18,6 +18,7 @@ const options = [
 
 const FormFieldError = ({ userName, changeOptions }) => {
   function handleChange(event) {
+    
     changeOptions({ [event.target.name]: event.target.value });
   }
   return (
