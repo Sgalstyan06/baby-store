@@ -14,7 +14,7 @@ function CardItem({ description, image, name, price, item }) {
         {/* <Card.Meta>
           <span className="date">Joined in 2015</span>
         </Card.Meta> */}
-        <Card.Description>{description}</Card.Description>
+        <Card.Description>{description} </Card.Description>
       </Card.Content>
 
       <Card.Content extra className="buy-info">

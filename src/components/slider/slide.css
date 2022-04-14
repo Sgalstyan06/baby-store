@@ -21,7 +21,8 @@ img {
 
 .slideImg{
 	width: 70%;
-	position: relative;;
+	position: relative;
+	z-index: -1;
 }
 
 .slideImg img{

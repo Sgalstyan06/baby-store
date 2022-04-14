@@ -23,7 +23,7 @@ const Cards = ({pageDevider}) => {
 
   function goToPage(e, data) {
     console.log(data.activePage);
-    setStart(data.activePage);
+    setStart(data.activePage * pageDevider - pageDevider);
   }
   
   console.log("result", result);

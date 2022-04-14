@@ -17,19 +17,19 @@ const options = [
 ];
 
 const FormFieldError = ({ userName, changeOptions }) => {
-  const [inpChange,setInpChange] = useState("");
-  useEffect(()=>{
-      const id = setTimeout(()=>{
-        changeOptions(inpChange);
-      },1700);
-      return ()=>clearTimeout(id)
-  },[inpChange])
-  // function handleChange(event) {
-  //   // const id = setTimeout(() => {
-  //   changeOptions({ [event.target.name]: event.target.value });
-  //   // },1200);
-  //   // return ()=>clearTimeout(id);
-  // }
+  // const [inpChange,setInpChange] = useState("");
+  // useEffect(()=>{
+      // const id = setTimeout(()=>{
+        // changeOptions(inpChange);
+      // },1700);
+      // return ()=>clearTimeout(id)
+  // },[inpChange])
+  function handleChange(event) {
+    // const id = setTimeout(() => {
+    changeOptions({ [event.target.name]: event.target.value });
+    // },1200);
+    // return ()=>clearTimeout(id);
+  }
   return (
     <Form>
       {/* <Form.Group widths='equal'> */}
@@ -48,7 +48,7 @@ const FormFieldError = ({ userName, changeOptions }) => {
         placeholder="Address"
         name="address"
         onChange={(e) => {
-          setInpChange({ [e.target.name]: e.target.value })
+          handleChange(e)
           // const idSetAdress =setTimeout(()=>{
             // handleChange(e);
           // },1200) ;
@@ -62,7 +62,7 @@ const FormFieldError = ({ userName, changeOptions }) => {
         placeholder="Phone number"
         name="phone"
         onChange={(e) => {
-          setInpChange({ [e.target.name]: e.target.value })
+          handleChange(e)
           // const idSetPhone =setTimeout(()=>{
             // handleChange(e);
           // },1200) ;
@@ -77,7 +77,7 @@ const FormFieldError = ({ userName, changeOptions }) => {
           value="cash"
           checked={true}
           onChange={(e) => {
-            // handleChange(e)
+            handleChange(e)
           }}
         />
       </Form.Field>

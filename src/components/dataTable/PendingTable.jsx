@@ -7,22 +7,25 @@ import productImg from "../../img/img1.jpg";
 import "./dataTable.css";
 
 function PendingTable({ list, changeStatus }) {
+
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
   const [result, setResult] = useState([]);
-
   const pageDevider = 4;
-  console.log("liststatus",list);
-  // console.log("list product", list.product.name);
+
+  
+  
   useEffect(() => {
     setProductsByPage(list.slice(start, start + pageDevider));
   }, [start, result]);
+
   useEffect(()=>{
     if(list && list.length>0)setResult(list);
   },[list])
+
   function goToPage(e, data) {
     console.log(data.activePage);
-    setStart(data.activePage);
+    setStart(data.activePage * pageDevider - pageDevider);
   }
   
   return (
@@ -95,7 +98,7 @@ function PendingTable({ list, changeStatus }) {
           );
         })}
         <div className="pagination-container">
-        {/* semantic pagination */}
+        
         <Pagination
           defaultActivePage={1}
           secondary

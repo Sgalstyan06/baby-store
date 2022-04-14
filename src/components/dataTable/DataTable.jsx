@@ -34,13 +34,14 @@ function DataTable({ list, uploadImg }) {
   useEffect(() => {
     if (result && result.length > 0)
       setProductsByPage(result.slice(start, start + pageDevider));
+      
   }, [start, result]);
   
   
   console.log("result", list);
   function goToPage(e, data) {
     console.log(data.activePage);
-    setStart(data.activePage);
+    setStart(data.activePage * pageDevider - pageDevider);
   }
   return (
     <>

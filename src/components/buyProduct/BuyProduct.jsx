@@ -25,6 +25,8 @@ function BuyProduct({ productInfo, item }) {
         picture: user.picture,
       };
       const orderStatus = await confirmOrder(userObj, item, token, options);
+     
+   
       console.log(orderStatus);
     } catch (error) {
       console.log(error);
@@ -40,6 +42,7 @@ function BuyProduct({ productInfo, item }) {
     }
       setDisable(status);
   }, [options]);
+
   function changeOptions(prop) {
     console.log("prop", prop);
     setOptions({ ...options, ...prop });
