@@ -33,7 +33,7 @@ const Cards = ({pageDevider}) => {
         productsByPage.length > 0 &&
         productsByPage.map((item) => {
           return (
-            <CardItem
+            <CardItem              
               item={item}
               key={item.id}
               description={item?.description.comment || ""}

@@ -5,8 +5,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./Header.css";
 import { nanoid } from "nanoid";
-import  { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -94,7 +93,7 @@ const NavBarDesktop = (props) => {
 //   state = {
 //     visible: false,
 //   };
-  
+
 //   handlePusher = () => {
 //     const { visible } = this.state;
 
@@ -169,7 +168,7 @@ function Header() {
       children: [
         <Image avatar spaced="right" src={user.picture} key={nanoid()} />,
         <Dropdown pointing="top left" text={user.name} key="userDropdown">
-          <Dropdown.Menu key="userDropdownMenu"  id="drop-down">
+          <Dropdown.Menu key="userDropdownMenu" id="drop-down">
             <Dropdown.Item text={user.name} key={user.name} />
             <Dropdown.Item
               as={Link}

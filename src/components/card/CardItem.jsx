@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function CardItem({ description, image, name, price, item }) {
   const { isAuthenticated, user } = useAuth0();
   return (
-    <Card centered>
+    <Card centered >
       <Image src={image} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
