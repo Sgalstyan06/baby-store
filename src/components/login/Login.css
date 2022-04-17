@@ -1,0 +1,23 @@
+.massage-login p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: -3px -3px 2px grey;
+
+}
+
+.ui.message.massage-login{
+    margin-bottom: 50px;
+}
+
+/* .login-btn{
+    width: 20%;
+} */
+.ui.positive.button{
+    margin-bottom: 50px;
+    
+}
+.row .column{
+    padding-top:  1.5rem;
+    
+}

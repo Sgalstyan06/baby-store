@@ -1,0 +1,18 @@
+.ui.inverted.vertical.segment{
+    background-color: #111316;
+    /* height: 60px; */
+}
+
+/* .ui.inverted.vertical.segment{
+    padding-top: 1rem;
+} */
+.six.wide.column,.four.wide.column{
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+ .column{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+

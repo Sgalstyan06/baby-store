@@ -14,7 +14,7 @@ function BuyProduct({ productInfo, item }) {
   const inintFormData = { address: "", phone: "", paymentMethod: "cash" };
   const [options, setOptions] = useState(inintFormData);
   const [disable, setDisable] = useState(true);
-
+console.log("item",item);
   async function confirmAction() {
     try {
       const token = await getAccessTokenSilently();
@@ -57,8 +57,8 @@ function BuyProduct({ productInfo, item }) {
       open={open}
       trigger={
         <Button color="green" inverted floated="right">
-          BUY
-        </Button>
+           BUY
+         </Button>
       }
     >
       <Modal.Content image>
@@ -73,7 +73,7 @@ function BuyProduct({ productInfo, item }) {
         <Modal.Description>
           <Header>{name}</Header>
           <p>{description}</p>
-          <p>{price + "$"}</p>
+          <p>{price}{item.currency}</p>
         </Modal.Description>
 
         <BuyForm userName={user.name} changeOptions={changeOptions} />

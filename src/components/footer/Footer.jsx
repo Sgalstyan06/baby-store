@@ -1,38 +1,33 @@
 import { Container, Grid, Header, List, Segment } from "semantic-ui-react";
+import { Link, Outlet } from "react-router-dom";
+import "./Footer.css";
 
 function Footer() {
   return (
     <div className="footer">
-      <Segment inverted vertical style={{ padding: "5em 0em" }}>
+      <Segment inverted vertical style={{ padding: "0.5em 0.5em" }}>
         <Container>
           <Grid divided inverted stackable>
             <Grid.Row>
-              <Grid.Column width={3}>
-                <Header inverted as="h4" content="About" />
+              <Grid.Column width={6}>
+                {/* <Header inverted as="h4" content="About" /> */}
                 <List link inverted>
-                  <List.Item as="a">Sitemap</List.Item>
-                  <List.Item as="a">Contact Us</List.Item>
-                  <List.Item as="a">Religious Ceremonies</List.Item>
-                  <List.Item as="a">Gazebo Plans</List.Item>
+                  <List.Item as={Link} to="/">
+                    Home
+                  </List.Item>
                 </List>
               </Grid.Column>
-              <Grid.Column width={3}>
-                <Header inverted as="h4" content="Services" />
+              <Grid.Column width={6}>
                 <List link inverted>
-                  <List.Item as="a">Banana Pre-Order</List.Item>
-                  <List.Item as="a">DNA FAQ</List.Item>
-                  <List.Item as="a">How To Access</List.Item>
-                  <List.Item as="a">Favorite X-Men</List.Item>
+                  <List.Item as={Link} to="/products">
+                    Products
+                  </List.Item>
                 </List>
               </Grid.Column>
-              <Grid.Column width={7}>
-                <Header as="h4" inverted>
-                  Footer Header
-                </Header>
-                <p>
-                  Extra space for a call to action inside the footer that could
-                  help re-engage users.
-                </p>
+              <Grid.Column width={4}>
+                <List link inverted>
+                  <List.Item>PHONE: +374-13-05-93</List.Item>
+                </List>
               </Grid.Column>
             </Grid.Row>
           </Grid>

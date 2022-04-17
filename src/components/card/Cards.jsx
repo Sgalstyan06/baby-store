@@ -40,6 +40,7 @@ const Cards = ({pageDevider}) => {
               image={item.img[0].imagePath}
               name={item.name}
               price={item.price}
+              currency = {item.currency}
             />
           );
         })}

@@ -70,13 +70,17 @@ input[type=file] {
 
 .currency{
     font-size: 10px;
-    /* opacity: 0.5; */
+    
 }
 
 .nine.wide.column.image-upload-form{
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+.ui.items.add-prd-list{
+    border-bottom: 1px solid rgb(194, 193, 193);
 }
 
 
