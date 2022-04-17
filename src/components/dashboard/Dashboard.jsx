@@ -120,6 +120,7 @@ function Dashboard() {
             pendingProducts={pendingProducts}
             allProducts={allProducts}
             changeStatus={changeStatus}
+            setResponseInfo={setResponseInfo} 
           />
           {/* paginateion add here to out div block */}
           

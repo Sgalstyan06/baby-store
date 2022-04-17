@@ -4,7 +4,7 @@ import { getData, getProducts } from "../../services/api";
 import CardItem from "./CardItem";
 import "./cards.css";
 
-const Cards = ({pageDevider}) => {
+const Cards = ({pageDevider, setResponseInfo}) => {
   const [result, setResult] = useState([]);
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
@@ -41,6 +41,7 @@ const Cards = ({pageDevider}) => {
               name={item.name}
               price={item.price}
               currency = {item.currency}
+              setResponseInfo={setResponseInfo}
             />
           );
         })}

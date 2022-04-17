@@ -16,7 +16,7 @@ import {
 import "./dataTable.css";
 import { useState, useEffect, Fragment } from "react";
 
-function DataTable({ list, uploadImg }) {
+function DataTable({ list, uploadImg, setResponseInfo }) {
   const [imgFile, setImgFile] = useState();
 
   function onChange(e) {
@@ -26,9 +26,8 @@ function DataTable({ list, uploadImg }) {
   useEffect(() => {
     console.log(imgFile);
   }, [imgFile]);
-
-  return (
-    <div>
+  // setResponseInfo("product creates");
+  return (    
       <div>
         {list &&
           list.length > 0 &&
@@ -99,11 +98,10 @@ function DataTable({ list, uploadImg }) {
                       {item.price}
                       {item.currency}
                     </Item.Description>
-                    {/* <Item.Extra>description </Item.Extra> */}
+                   
                   </Item.Content>
                 </Item>
-
-                <Item>                 
+                <Item>             
 
                   <form
                     onSubmit={(e) => {
@@ -130,7 +128,7 @@ function DataTable({ list, uploadImg }) {
             );
           })}
       </div>
-    </div>
+    
   );
 }
 

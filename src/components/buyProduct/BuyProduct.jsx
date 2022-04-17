@@ -5,7 +5,7 @@ import "./BuyProduct.css";
 import { confirmOrder } from "../../services/api";
 import { useAuth0 } from "@auth0/auth0-react";
 
-function BuyProduct({ productInfo, item }) {
+function BuyProduct({ productInfo, item,setResponseInfo }) {
   const { error, isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
 
@@ -25,7 +25,8 @@ console.log("item",item);
         picture: user.picture,
       };
       const orderStatus = await confirmOrder(userObj, item, token, options);
-     
+     console.log("orderStatus buy",orderStatus);
+      setResponseInfo(`You buy the broduct`)
    
       console.log(orderStatus);
     } catch (error) {

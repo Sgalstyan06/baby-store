@@ -4,7 +4,7 @@ import DataTable from "../dataTable/DataTable";
 import PendingTable from "../dataTable/PendingTable";
 import { useEffect, useState } from "react";
 import "./Tabs.css";
-const Tabs = ({ pendingProducts, allProducts, changeStatus, uploadImg }) => {
+const Tabs = ({ pendingProducts, allProducts, changeStatus, uploadImg, setResponseInfo }) => {
   // console.log("pendingProducts", pendingProducts);
   // console.log("allProducts", allProducts);
   const [productsByPage, setProductsByPage] = useState([]);
@@ -50,7 +50,7 @@ const Tabs = ({ pendingProducts, allProducts, changeStatus, uploadImg }) => {
       render: () => (
         <>
           <Tab.Pane className="tab-add-prd">
-            <DataTable list={productsByPage} uploadImg={uploadImg} />
+            <DataTable list={productsByPage} uploadImg={uploadImg} setResponseInfo={setResponseInfo}/>
           </Tab.Pane>
           <div className="pagination-container">
             <Pagination
