@@ -48,9 +48,10 @@ function Dashboard() {
       } else {
         data = await getOrders(user.sub, token);
         // console.log("user as a user ",user);
-        // console.log("data",data);
+        console.log("data",data);
         if (data && Array.isArray(data)) {
           if (data.length !== 0) setOrderList(data);
+
         } else if (data && data.status === 401) {
           const authorised = await authoriseUser(user, token);
         } else {
@@ -103,6 +104,7 @@ function Dashboard() {
     setResponseInfo("");
   }
    console.log("user", user);
+   console.log("orderList",orderList);
   return (
     <div className="dashboard ui container">
       {responseInfo.length > 0 ? (

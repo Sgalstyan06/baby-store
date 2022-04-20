@@ -158,7 +158,7 @@ function NavBar({ leftItems, rightItems }) {
 const leftItems = [
   { as: Link, to: "/", content: "Home", key: "home" },
   { as: Link, to: "/products", content: "Products", key: "products" },
-  // { as: Link, to: "/review", content: "Review", key: "review" },
+ 
 ];
 
 const rightItems = [{ as: Link, to: "/login", content: "Login", key: "login" }];

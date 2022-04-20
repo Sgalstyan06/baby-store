@@ -36,7 +36,7 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
               item={item}
               key={item.id}
               description={item?.description.comment || ""}
-              image={item.img[0].imagePath}
+              image={item.img && item.img.length>0 && item.img[0].imagePath}
               imageList={item.img} //try to add picture pagination
               name={item.name}
               price={item.price}
