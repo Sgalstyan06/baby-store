@@ -17,18 +17,11 @@ const options = [
 ];
 
 const FormFieldError = ({ userName, changeOptions }) => {
-  // const [inpChange,setInpChange] = useState("");
-  // useEffect(()=>{
-      // const id = setTimeout(()=>{
-        // changeOptions(inpChange);
-      // },1700);
-      // return ()=>clearTimeout(id)
-  // },[inpChange])
+  
   function handleChange(event) {
-    // const id = setTimeout(() => {
+    
     changeOptions({ [event.target.name]: event.target.value });
-    // },1200);
-    // return ()=>clearTimeout(id);
+    
   }
   return (
     <Form>
@@ -61,6 +54,7 @@ const FormFieldError = ({ userName, changeOptions }) => {
         label="Phone number"
         placeholder="Phone number"
         name="phone"
+        type="number"
         onChange={(e) => {
           handleChange(e)
           // const idSetPhone =setTimeout(()=>{

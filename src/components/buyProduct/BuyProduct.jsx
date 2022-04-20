@@ -40,21 +40,42 @@ function BuyProduct({ productInfo, item, setResponseInfo }) {
       console.log(error);
     }
   }
+  // useEffect(() => {
+  //   let status = false;
+  //   for (let key in options) {
+  //     // console.log("options[key]",options[key]);
+  //     if (!options[key]) {
+  //       status = true;
+  //     }
+  //   }
+  //   setDisable(status);
+  // }, [options]);
+
   useEffect(() => {
+    if (open === false) {
+      resetOptions();
+    }
+    console.log("disable", disable);
     let status = false;
     for (let key in options) {
-      // console.log("options[key]",options[key]);
-      if (!options[key]) {
+      if (!options[key] && key !== "paymentMethod") {
         status = true;
       }
     }
-    setDisable(status);
-  }, [options]);
 
-  function changeOptions(prop) {
-    console.log("prop", prop);
-    setOptions({ ...options, ...prop });
-    // console.log("options", options);
+    setDisable(status);
+  }, [options, open]);
+
+  function resetOptions() {
+    for (let key in options) {
+      if (key != "paymentMethod") {
+        options[key] = "";
+      }
+    }
+  }
+
+  function changeOptions(prop) {    
+    setOptions({ ...options, ...prop });    
   }
 
   return (

@@ -1,6 +1,6 @@
 import { Label } from "semantic-ui-react";
 import Cards from "../card/Cards";
-import { Table, Icon, Message } from "semantic-ui-react";
+import { Table, Sticky, Message } from "semantic-ui-react";
 import { useEffect, useState } from "react";
 
 function Products() {
@@ -14,7 +14,10 @@ function Products() {
   return (
     <div className="home ui container">
       {responseInfo.length > 0 ? (
-        <Message success onDismiss={handleDismiss} content={responseInfo} />
+        <Sticky >
+           <Message success onDismiss={handleDismiss} content={responseInfo} />
+      </Sticky>
+       
       ) : (
         ""
       )}
