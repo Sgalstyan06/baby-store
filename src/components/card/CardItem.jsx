@@ -4,10 +4,19 @@ import BuyProduct from "../buyProduct/BuyProduct";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
-function CardItem({ description, image, name, price, item, currency, setResponseInfo }) {
+function CardItem({
+  description,
+  image,
+  name,
+  price,
+  item,
+  currency,
+  setResponseInfo,
+  imageList,
+}) {
   const { isAuthenticated, user } = useAuth0();
   return (
-    <Card centered >
+    <Card centered>
       <Image src={image} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
@@ -18,21 +27,23 @@ function CardItem({ description, image, name, price, item, currency, setResponse
       </Card.Content>
 
       <Card.Content extra className="buy-info">
-        {price}{currency}
+        {price}
+        {currency}
         {isAuthenticated ? (
           <BuyProduct
             item={item}
             productInfo={{ description, image, name, price }}
             setResponseInfo={setResponseInfo}
+            imageList = {imageList}
           />
         ) : (
+          
           <Button as={Link} to="/login" color="green" inverted floated="right">
             BUY
           </Button>
-        )} 
-        
+        )}
       </Card.Content>
     </Card>
   );
 }
- export default CardItem;
+export default CardItem;

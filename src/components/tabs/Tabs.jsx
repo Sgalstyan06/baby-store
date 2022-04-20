@@ -10,7 +10,6 @@ const Tabs = ({ pendingProducts, allProducts, changeStatus, uploadImg, setRespon
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
   const [result, setResult] = useState([]);
-
   const [pendingPage,setPendingPage] = useState([]);
   const [startForPandingPage,setStartForPandingPage] = useState(0);
   const [resultPending,setResultPending] = useState([])
@@ -78,7 +77,7 @@ const Tabs = ({ pendingProducts, allProducts, changeStatus, uploadImg, setRespon
               onPageChange={goToPagePending}
               totalPages={Math.ceil(resultPending.length / pageDevider)}
             />
-            <div>page</div>
+            
           </div>
         </>
       ),

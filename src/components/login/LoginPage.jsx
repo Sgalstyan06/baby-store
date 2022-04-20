@@ -3,10 +3,11 @@ import { Button, Message } from "semantic-ui-react";
 import "./Login.css";
 
 
+
 function LoginPage() {
   const { loginWithRedirect } = useAuth0();
   return (
-    <div style={{ paddingTop: "100px" }}>
+    <div className="home ui container">
       
       <Button positive onClick={() => loginWithRedirect()}>Log In</Button>
       {/* <Message className="massage-login" content='Please Subscribe up to  buy a product' /> */}

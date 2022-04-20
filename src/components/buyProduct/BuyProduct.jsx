@@ -3,9 +3,10 @@ import { Button, Form, Header, Image, Modal, Segment } from "semantic-ui-react";
 import BuyForm from "./BuyForm";
 import "./BuyProduct.css";
 import { confirmOrder } from "../../services/api";
+import { getOrdersByUserId } from "../../services/api";
 import { useAuth0 } from "@auth0/auth0-react";
 
-function BuyProduct({ productInfo, item,setResponseInfo }) {
+function BuyProduct({ productInfo, item, setResponseInfo }) {
   const { error, isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
 
@@ -14,7 +15,7 @@ function BuyProduct({ productInfo, item,setResponseInfo }) {
   const inintFormData = { address: "", phone: "", paymentMethod: "cash" };
   const [options, setOptions] = useState(inintFormData);
   const [disable, setDisable] = useState(true);
-console.log("item",item);
+  // console.log("item",item);
   async function confirmAction() {
     try {
       const token = await getAccessTokenSilently();
@@ -25,9 +26,15 @@ console.log("item",item);
         picture: user.picture,
       };
       const orderStatus = await confirmOrder(userObj, item, token, options);
-     console.log("orderStatus buy",orderStatus);
-      setResponseInfo(`You buy the broduct`)
-   
+
+      const getOrderName = await getOrdersByUserId(userObj.id, token);
+
+      const prodName = getOrderName.filter(
+        (item) => item.id == orderStatus.info.OrderId
+      );
+
+      setResponseInfo(`You buy the product ${prodName[0].product.name}`);
+
       console.log(orderStatus);
     } catch (error) {
       console.log(error);
@@ -35,19 +42,19 @@ console.log("item",item);
   }
   useEffect(() => {
     let status = false;
-    for(let key in options){
-      console.log("options[key]",options[key]);
-      if(!options[key] ){
+    for (let key in options) {
+      // console.log("options[key]",options[key]);
+      if (!options[key]) {
         status = true;
       }
     }
-      setDisable(status);
+    setDisable(status);
   }, [options]);
 
   function changeOptions(prop) {
     console.log("prop", prop);
     setOptions({ ...options, ...prop });
-    console.log("options", options);
+    // console.log("options", options);
   }
 
   return (
@@ -58,8 +65,8 @@ console.log("item",item);
       open={open}
       trigger={
         <Button color="green" inverted floated="right">
-           BUY
-         </Button>
+          BUY
+        </Button>
       }
     >
       <Modal.Content image>
@@ -74,7 +81,10 @@ console.log("item",item);
         <Modal.Description>
           <Header>{name}</Header>
           <p>{description}</p>
-          <p>{price}{item.currency}</p>
+          <p>
+            {price}
+            {item.currency}
+          </p>
         </Modal.Description>
 
         <BuyForm userName={user.name} changeOptions={changeOptions} />
@@ -92,6 +102,7 @@ console.log("item",item);
               icon="checkmark"
               onClick={() => {
                 setOpen(false);
+                setDisable(true);
                 confirmAction();
               }}
               positive

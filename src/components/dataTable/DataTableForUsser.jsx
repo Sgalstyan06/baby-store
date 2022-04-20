@@ -8,33 +8,33 @@ import { useState, useEffect } from "react";
 function DataTableForUsser({ list }) {
 
   const [productsByPage, setProductsByPage] = useState([]);
-  const [imgFile, setImgFile] = useState();
-  const [start, setStart] = useState(0);
-  const [result, setResult] = useState([]);
+  // const [imgFile, setImgFile] = useState();
+  // const [start, setStart] = useState(0);
+  // const [result, setResult] = useState([]);
 
   const pageDevider = 4;
 
-  console.log("pend-list", list);
-  function onChange(e) {
-    console.log(e.target.files);
-    setImgFile(e.target.files[0]);
-  }
-  useEffect(() => {
-    console.log(imgFile);
-  }, [imgFile]);
+  // console.log("pend-list", list);
+  // function onChange(e) {
+  //   // console.log(e.target.files);
+  //   setImgFile(e.target.files[0]);
+  // }
+  // useEffect(() => {
+  //   console.log(imgFile);
+  // }, [imgFile]);
 
-  useEffect(() => {
-    setProductsByPage(list.slice(start, start + pageDevider));
-  }, [start, result]);
+  // useEffect(() => {
+  //   setProductsByPage(list.slice(start, start + pageDevider));
+  // }, [start, result]);
 
-  useEffect(()=>{
-    if(list && list.length>0)setResult(list);
-  },[list])
+  // useEffect(()=>{
+  //   if(list && list.length>0)setResult(list);
+  // },[list])
 
-  function goToPage(e, data) {
-    console.log(data.activePage);
-    setStart(data.activePage * pageDevider - pageDevider);
-  }
+  // function goToPage(e, data) {
+  //   // console.log(data.activePage);
+  //   setStart(data.activePage * pageDevider - pageDevider);
+  // }
   return (
     <>
       {productsByPage &&
@@ -73,14 +73,14 @@ function DataTableForUsser({ list }) {
           );
         })}
 
-      <div className="pagination-container">
+      {/* <div className="pagination-container">
         <Pagination
           defaultActivePage={1}
           secondary
           onPageChange={goToPage}
           totalPages={Math.ceil(list.length / pageDevider)}
         />
-      </div>
+      </div> */}
     </>
   );
 }

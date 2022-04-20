@@ -34,7 +34,7 @@ function Dashboard() {
           getProducts(),
           getAllOrders(user.sub, token, UNPAID),
         ]);
-        console.log("dataResult", dataResult);
+        // console.log("dataResult", dataResult);
         if (dataResult && dataResult[1] && dataResult[1].status === 401) {
           const authorised = await authoriseUser(user, token);
         } else {
@@ -43,12 +43,12 @@ function Dashboard() {
             allProducts: dataResult[0],
             pendingProducts: dataResult[1],
           }));
-          console.log("adminData", adminData);
+          // console.log("adminData", adminData);
         }
       } else {
         data = await getOrders(user.sub, token);
-        console.log("user as a user ",user);
-        console.log("data",data);
+        // console.log("user as a user ",user);
+        // console.log("data",data);
         if (data && Array.isArray(data)) {
           if (data.length !== 0) setOrderList(data);
         } else if (data && data.status === 401) {
@@ -77,7 +77,7 @@ function Dashboard() {
         status
       );
       orderShow();//I put this function call
-      console.log("changeResult", changeResult);
+      // console.log("changeResult", changeResult);
     } catch (error) {
       console.log("sxal es arel");
     }
@@ -87,7 +87,7 @@ function Dashboard() {
     try {
       const token = await getAccessTokenSilently();
       const responseImg = await imgUpdate(productId, file, token, user.sub);
-      console.log(responseImg);
+      // console.log(responseImg);
 
       if (responseImg.httpStatus && responseImg.httpStatus === "OK") {
         setResponseInfo(responseImg.message);
@@ -102,7 +102,7 @@ function Dashboard() {
   function handleDismiss() {
     setResponseInfo("");
   }
-  console.log("adminData", adminData);
+   console.log("user", user);
   return (
     <div className="dashboard ui container">
       {responseInfo.length > 0 ? (

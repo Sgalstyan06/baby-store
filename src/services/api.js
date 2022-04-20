@@ -40,6 +40,21 @@ export async function getAllOrders(user_id, token) {
   }
 }
 
+export async function getOrdersByUserId(user_id, token) {
+  try {
+    const response = await fetch(`${apiURL}order/user-order`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        userId: user_id,
+      },
+    });
+    return await response.json();
+  } catch (error) {
+    console.log("wrong", error);
+  }
+}
+
 export async function getOrderByStatus(user_id, token, status) {
   try {
     const response = await fetch(`${apiURL}order/user-order`, {
@@ -171,6 +186,23 @@ export async function imgUpdate(productId, file, token, userId) {
       },
 
       body: formData,
+    });
+    return response.json();
+  } catch (error) {
+    console.log("sxalPost", error);
+  }
+}
+
+export async function isUserExists(userId, token) {
+   
+  try {
+    const response = await fetch(`${apiURL}user/user-id`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json;charset=utf-8",
+        userId: userId,
+      }
     });
     return response.json();
   } catch (error) {

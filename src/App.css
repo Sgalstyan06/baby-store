@@ -39,3 +39,7 @@
 .main{
   min-height: calc(100% - 300px);
 }
+
+.home.ui.container{
+  min-height: calc(100vh - 100px);
+}

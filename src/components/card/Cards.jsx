@@ -4,12 +4,10 @@ import { getData, getProducts } from "../../services/api";
 import CardItem from "./CardItem";
 import "./cards.css";
 
-const Cards = ({pageDevider, setResponseInfo}) => {
+const Cards = ({ pageDevider, setResponseInfo }) => {
   const [result, setResult] = useState([]);
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
-  
-  
 
   useEffect(() => {
     (async function createPageinashion() {
@@ -17,35 +15,37 @@ const Cards = ({pageDevider, setResponseInfo}) => {
       setResult(data);
     })();
   }, []);
+
   useEffect(() => {
     setProductsByPage(result.slice(start, start + pageDevider));
   }, [start, result]);
 
   function goToPage(e, data) {
-    console.log(data.activePage);
+    // console.log(data.activePage);
     setStart(data.activePage * pageDevider - pageDevider);
   }
-  
-  console.log("result", result);
+
+  // console.log("result", result);
   return (
     <div className="ui stackable three column grid productItems">
       {productsByPage &&
         productsByPage.length > 0 &&
         productsByPage.map((item) => {
           return (
-            <CardItem              
+            <CardItem
               item={item}
               key={item.id}
               description={item?.description.comment || ""}
               image={item.img[0].imagePath}
+              imageList={item.img} //try to add picture pagination
               name={item.name}
               price={item.price}
-              currency = {item.currency}
+              currency={item.currency}
               setResponseInfo={setResponseInfo}
             />
           );
         })}
-      
+
       <div className="pagination-container">
         {/* semantic pagination */}
         <Pagination

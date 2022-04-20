@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "./Header.css";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
+import { isUserExists, authoriseUser } from "../../services/api";
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -24,6 +25,7 @@ const NavBarMobile = (props) => {
 
   return (
     <Sidebar.Pushable>
+      <Sidebar.Pusher id = "left-pusher" dimmed={visible} onClick={onPusherClick}>
       <Sidebar
         as={Menu}
         animation="overlay"
@@ -34,7 +36,9 @@ const NavBarMobile = (props) => {
         visible={visible}
         key={nanoid()}
       />
-      <Sidebar.Pusher dimmed={visible} onClick={onPusherClick}>
+      </Sidebar.Pusher>
+      
+      <Sidebar.Pusher >
         <Menu fixed="top" inverted>
           <Menu.Item key={nanoid()}>
             <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
@@ -160,7 +164,14 @@ const leftItems = [
 const rightItems = [{ as: Link, to: "/login", content: "Login", key: "login" }];
 
 function Header() {
-  const { user, isAuthenticated, logout } = useAuth0();
+  const {
+    user,
+    isAuthenticated,
+    logout,
+    error,
+    isLoading,
+    getAccessTokenSilently,
+  } = useAuth0();
 
   rightItems.length = 0;
   if (isAuthenticated) {
@@ -191,7 +202,28 @@ function Header() {
       link: { as: Link, to: "/login", content: "Login", key: "login" },
     });
   }
-
+  useEffect(() => {
+    (async () => {
+      if (
+        isAuthenticated &&
+        localStorage.getItem("autoriseUser") !== user.nickname
+      ) {
+        let authorised;
+        const isExist = await isUserExists(user.sub);
+        console.log("isExists", isExist);
+        if (!isExist || (isExist.httpStatus === "OK" && !isExist.info.exists)) {
+          const token = await getAccessTokenSilently();
+          authorised = await authoriseUser(user, token);
+        }
+        if (
+          (authorised && authorised.httpStatus === "OK") ||
+          isExist.info.exists
+        ) {
+          localStorage.setItem("autoriseUser", user.nickname);
+        }
+      }
+    })();
+  }, [isAuthenticated]);
   return (
     <MediaContextProvider>
       <NavBar leftItems={leftItems} rightItems={rightItems}>
