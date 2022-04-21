@@ -13,7 +13,7 @@ function Products() {
   }
   return (
     <div className="home ui container">
-      {responseInfo.length > 0 ? (
+      {responseInfo && responseInfo.length > 0 ? (
         <Sticky >
            <Message success onDismiss={handleDismiss} content={responseInfo} />
       </Sticky>

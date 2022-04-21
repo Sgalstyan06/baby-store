@@ -26,6 +26,7 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
   }
 
   // console.log("result", result);
+  console.log("productsByPage",productsByPage);
   return (
     <div className="ui stackable three column grid productItems">
       {productsByPage &&
@@ -42,6 +43,7 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
               price={item.price}
               currency={item.currency}
               setResponseInfo={setResponseInfo}
+              stock={item.stock.count}
             />
           );
         })}

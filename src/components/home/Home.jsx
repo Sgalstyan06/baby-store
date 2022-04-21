@@ -15,7 +15,7 @@ function Home() {
   }
   return (
     <div className="home ui container">
-       {responseInfo.length > 0 ? (
+       {responseInfo && responseInfo.length > 0 ? (
         <Message success onDismiss={handleDismiss} content={responseInfo} />
       ) : (
         ""

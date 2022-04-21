@@ -7,6 +7,7 @@ import productImg from "../../img/img1.jpg";
 import "./dataTable.css";
 
 function PendingTable({ list, changeStatus }) {
+  console.log("list", list);
   return (
     <>
       {list &&
@@ -113,7 +114,7 @@ function PendingTable({ list, changeStatus }) {
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
                 /> */}
 
-                {item.orderStatus}
+                {item.orderStatus} count product {item.product.stock.count}
                 <Item.Content>
                   <Item.Header as="a">
                     <Dropdown pointing="top left" text="Edit Status">

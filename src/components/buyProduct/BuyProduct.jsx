@@ -6,7 +6,7 @@ import { confirmOrder } from "../../services/api";
 import { getOrdersByUserId } from "../../services/api";
 import { useAuth0 } from "@auth0/auth0-react";
 
-function BuyProduct({ productInfo, item, setResponseInfo }) {
+function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
   const { error, isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
 
@@ -15,6 +15,10 @@ function BuyProduct({ productInfo, item, setResponseInfo }) {
   const inintFormData = { address: "", phone: "", paymentMethod: "cash" };
   const [options, setOptions] = useState(inintFormData);
   const [disable, setDisable] = useState(true);
+  const [countProduct, setCountProduct] = useState(stock);
+
+  // useEffect(()=>{},[stock])
+
   // console.log("item",item);
   async function confirmAction() {
     try {
@@ -84,10 +88,12 @@ function BuyProduct({ productInfo, item, setResponseInfo }) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={
-        <Button color="green" inverted floated="right">
+      trigger={countProduct?(<Button color="green" inverted floated="right">
+      BUY
+    </Button>):(<Button disabled = {true} color="green" inverted floated="right">
           BUY
-        </Button>
+        </Button>)
+        
       }
     >
       <Modal.Content image>

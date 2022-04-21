@@ -27,6 +27,7 @@ function DataTable({ list, uploadImg, setResponseInfo }) {
     console.log(imgFile);
   }, [imgFile]);
   // setResponseInfo("product creates");
+  console.log("list-all-product", list);
   return (    
       <div>
         {list &&
@@ -95,8 +96,8 @@ function DataTable({ list, uploadImg, setResponseInfo }) {
                     <Item.Header as="a"> {item.name}</Item.Header>
                     <Item.Meta></Item.Meta>
                     <Item.Description>
-                      {item.price}
-                      {item.currency}
+                      {item.price} 
+                      {item.currency} conut {item.stock.count}
                     </Item.Description>
                    
                   </Item.Content>

@@ -13,6 +13,7 @@ function CardItem({
   currency,
   setResponseInfo,
   imageList,
+  stock
 }) {
   const { isAuthenticated, user } = useAuth0();
   return (
@@ -25,7 +26,7 @@ function CardItem({
         </Card.Meta> */}
         <Card.Description>{description} </Card.Description>
       </Card.Content>
-
+        <Card.Content>conut off {stock}</Card.Content>
       <Card.Content extra className="buy-info">
         {price}
         {currency}
@@ -35,6 +36,7 @@ function CardItem({
             productInfo={{ description, image, name, price }}
             setResponseInfo={setResponseInfo}
             imageList = {imageList}
+            stock={stock}
           />
         ) : (
           

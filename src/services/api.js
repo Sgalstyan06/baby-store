@@ -145,8 +145,7 @@ export async function confirmOrder(user, product, token, option) {
 }
 
 export async function confirmAddProduct(productObj, userId, token) {
-  console.log("userId ",userId);
-  console.log("productObj",productObj);
+  
   try {
     const response = await fetch(`${apiURL}product`, {
       method: "POST",

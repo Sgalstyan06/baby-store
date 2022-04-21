@@ -16,7 +16,7 @@ function DataTableForUsser({ list }) {
 
   console.log("pend-list", list);
   function onChange(e) {
-    // console.log(e.target.files);
+    
     setImgFile(e.target.files[0]);
   }
   useEffect(() => {
@@ -32,7 +32,7 @@ function DataTableForUsser({ list }) {
   },[list])
 
   function goToPage(e, data) {
-    // console.log(data.activePage);
+    
     setStart(data.activePage * pageDevider - pageDevider);
   }
   return (
