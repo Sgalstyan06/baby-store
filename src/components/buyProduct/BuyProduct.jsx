@@ -69,6 +69,7 @@ function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
 
     setDisable(status);
   }, [options, open]);
+  
 
   function resetOptions() {
     for (let key in options) {

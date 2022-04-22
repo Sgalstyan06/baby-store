@@ -103,8 +103,8 @@ function Dashboard() {
   function handleDismiss() {
     setResponseInfo("");
   }
-   console.log("user", user);
-   console.log("orderList",orderList);
+  //  console.log("user", user);
+  //  console.log("orderList",orderList);
   return (
     <div className="dashboard ui container">
       {responseInfo.length > 0 ? (

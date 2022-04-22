@@ -3,6 +3,7 @@ import Cards from "../card/Cards";
 import { Table, Sticky, Message } from "semantic-ui-react";
 import { useEffect, useState } from "react";
 
+
 function Products() {
   const [responseInfo, setResponseInfo] = useState("");
 
@@ -21,8 +22,10 @@ function Products() {
       ) : (
         ""
       )}
+      
       <Cards pageDevider={countPageProduct}
        setResponseInfo={setResponseInfo}
+       
       />
     </div>
   );

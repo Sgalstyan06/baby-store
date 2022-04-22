@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Pagination } from "semantic-ui-react";
 import { getData, getProducts } from "../../services/api";
+
 import CardItem from "./CardItem";
 import "./cards.css";
 
@@ -8,10 +9,12 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
   const [result, setResult] = useState([]);
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
+  const [searchProd,setSearchProd] = useState([]);
+  
 
   useEffect(() => {
     (async function createPageinashion() {
-      let data = await getProducts();
+      let data = await getProducts();      
       setResult(data);
     })();
   }, []);
@@ -25,9 +28,13 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
     setStart(data.activePage * pageDevider - pageDevider);
   }
 
+  function searchProduct(event){
+      console.log(event);
+  }
   // console.log("result", result);
   console.log("productsByPage",productsByPage);
-  return (
+  return (<>
+
     <div className="ui stackable three column grid productItems">
       {productsByPage &&
         productsByPage.length > 0 &&
@@ -58,6 +65,7 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
         />
       </div>
     </div>
+    </>
   );
 };
 

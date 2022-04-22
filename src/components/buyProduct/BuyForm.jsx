@@ -42,10 +42,7 @@ const FormFieldError = ({ userName, changeOptions }) => {
         name="address"
         onChange={(e) => {
           handleChange(e)
-          // const idSetAdress =setTimeout(()=>{
-            // handleChange(e);
-          // },1200) ;
-          // return ()=>clearTimeout(idSetAdress)
+          
         }}
       />
       <Form.Field

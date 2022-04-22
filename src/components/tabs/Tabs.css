@@ -1,3 +1,17 @@
 .ui.bottom.attached.segment.active.tab.tab-add-prd{
     width: 70%;
 }
+
+/* .ui.dropdown>.text */
+/* .ui.dropdown{
+    background-color: gainsboro;
+} */
+
+.ui.top.left.pointing.dropdown.select-status .divider.text{
+    background-color: #21ba45;
+    border-radius: 3px;
+    width: 35%;
+    color: white;
+    text-align: center;
+    margin-bottom: 1rem;;
+}

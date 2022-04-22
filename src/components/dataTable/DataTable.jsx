@@ -24,10 +24,10 @@ function DataTable({ list, uploadImg, setResponseInfo }) {
   }
 
   useEffect(() => {
-    console.log(imgFile);
+    
   }, [imgFile]);
   // setResponseInfo("product creates");
-  console.log("list-all-product", list);
+  
   return (    
       <div>
         {list &&
@@ -118,12 +118,7 @@ function DataTable({ list, uploadImg, setResponseInfo }) {
                       <Icon className="btn-icon" color="green" name="upload" />
                     </Button>
                   </form>
-                  {/* <Item.Content>
-                    <Item.Header as="a">Dropdown</Item.Header>
-                    <Item.Meta></Item.Meta>
-                    <Item.Description>Address </Item.Description>
-                    <Item.Extra>Phone </Item.Extra>
-                  </Item.Content> */}
+                  
                 </Item>
               </Item.Group>
             );

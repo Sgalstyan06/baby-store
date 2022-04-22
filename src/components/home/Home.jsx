@@ -5,8 +5,10 @@ import "../home/home.css";
 import { Table, Icon, Message } from "semantic-ui-react";
 import { useEffect, useState } from "react";
 
+
 function Home() {
   const [responseInfo, setResponseInfo] = useState("");
+  
 
   let countPageProduct = 4;
 
@@ -15,14 +17,17 @@ function Home() {
   }
   return (
     <div className="home ui container">
-       {responseInfo && responseInfo.length > 0 ? (
+      {responseInfo && responseInfo.length > 0 ? (
         <Message success onDismiss={handleDismiss} content={responseInfo} />
       ) : (
         ""
       )}
       <Slide slides={slidesData()} />
-      <Cards pageDevider={countPageProduct}
-      setResponseInfo={setResponseInfo}
+      
+      <Cards
+        pageDevider={countPageProduct}
+        setResponseInfo={setResponseInfo}
+        
       />
     </div>
   );
