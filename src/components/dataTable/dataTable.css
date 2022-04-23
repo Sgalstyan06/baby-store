@@ -70,6 +70,7 @@ input[type=file] {
 
 .currency{
     font-size: 10px;
+    color: coral;
     
 }
 
@@ -83,5 +84,12 @@ input[type=file] {
     border-bottom: 1px solid rgb(194, 193, 193);
 }
 
+.ui.items.user-order .content{
+    padding-top: 2rem;
 
+}
 
+.ui.items.user-order .content .header{
+    padding-top: 2rem;
+
+}

@@ -7,13 +7,15 @@ function Slides() {
   const [slideData, setSlideData] = useState(slidesData());
   const [index, setIndex] = useState(0);
   function handleNext() {
-    index !== slideData.length - 1 ? setIndex(index + 1) : setIndex(0);
+    index !== slideData.length - 1 ? setIndex(index+1) : setIndex(0);
   }
 
   function handlePrev() {
     index !== 0 ? setIndex(index - 1) : setIndex(slideData.length - 1);
+    
+  
   }
-
+  
   return (
     <div>
       <div id="slide" className="card text-center">
@@ -35,9 +37,9 @@ function Slides() {
             <Icon name="chevron right" />
           </Button>
         </div>
-        <div className="slideDescription">
+        {/* <div className="slideDescription">
           <p data-testid="text">{slideData[index].text}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -23,87 +23,28 @@ function DataTable({ list, uploadImg, setResponseInfo }) {
     setImgFile(e.target.files[0]);
   }
 
-  useEffect(() => {
-    
-  }, [imgFile]);
+  useEffect(() => {}, [imgFile]);
   // setResponseInfo("product creates");
-  
-  return (    
-      <div>
-        {list &&
-          list.length > 0 &&
-          list.map((item) => {
-            return (
-              // <Grid className="grid-table" key={nanoid()}>
-              //   <Grid.Row>
-              //     <Grid.Column width="10">
-              //       <Segment.Inline>
-              //         <Image
-              //           avatar
-              //           className="product-icon"
-              // src={
-              //   item.img[item.img.length - 1]?.imagePath || productImg
-              // }
-              //         />
-              //         {item.name}{item.price}
-              //           <span className="currency">{item.currency}</span></Segment.Inline>
-              //         <Segment.Inline>
+console.log("list",list);
+  return (
+    <div>
+      {list &&
+        list.length > 0 &&
+        list.map((item) => {
+          return (
+            <Item.Group className="add-prd-list" key={nanoid()}>
+              <Item>
+                <Item.Image
+                  size="tiny"
+                  src={item.img[item.img.length - 1]?.imagePath || productImg}
+                />
 
-              //         </Segment.Inline>
-
-              //     </Grid.Column>
-              //     <Grid.Column width="6" className="image-upload-form">
-              //       <Segment.Inline>
-              // <form
-              //   onSubmit={(e) => {
-              //     e.preventDefault();
-              //     uploadImg(imgFile, item.id);
-              //   }}
-              // >
-              //   <label htmlFor="file-input" className="img-icon">
-              //     <Icon
-              //       className="btn-icon"
-              //       color="green"
-              //       name="images"
-              //     />
-              //   </label>
-              //   <input
-              //     type="file"
-              //     id="file-input"
-              //     onChange={onChange}
-              //   />
-              //   <Button className="btn-upload" type="submit">
-              //     <Icon
-              //       className="btn-icon"
-              //       color="green"
-              //       name="upload"
-              //     />
-              //   </Button>
-              // </form>
-              //       </Segment.Inline>
-              //     </Grid.Column>
-              //   </Grid.Row>
-              // </Grid>
-
-              <Item.Group className="add-prd-list" key={nanoid()}>
-                <Item>
-                  <Item.Image
-                    size="tiny"
-                    src={item.img[item.img.length - 1]?.imagePath || productImg}
-                  />
-
-                  <Item.Content>
-                    <Item.Header as="a"> {item.name}</Item.Header>
-                    <Item.Meta></Item.Meta>
-                    <Item.Description>
-                      {item.price} 
-                      {item.currency} conut {item.stock.count}
-                    </Item.Description>
-                   
-                  </Item.Content>
-                </Item>
-                <Item>             
-
+                <Item.Content>
+                  <Item.Header as="a"> {item.name}</Item.Header>
+                  <Item.Meta></Item.Meta>
+                  <Item.Description>{item.description.comment}</Item.Description>
+                </Item.Content>
+                <Item.Content>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -118,13 +59,19 @@ function DataTable({ list, uploadImg, setResponseInfo }) {
                       <Icon className="btn-icon" color="green" name="upload" />
                     </Button>
                   </form>
+                </Item.Content>
+                <Item.Content>Available <div>{item.stock.count}</div></Item.Content>
+                <Item.Content>
                   
-                </Item>
-              </Item.Group>
-            );
-          })}
-      </div>
-    
+                  {item.price}
+                  <div className="currency">{item.currency}</div>
+                </Item.Content>
+              </Item>
+              <Item></Item>
+            </Item.Group>
+          );
+        })}
+    </div>
   );
 }
 

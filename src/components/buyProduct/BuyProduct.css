@@ -1,4 +1,26 @@
 .custom-modal .ui.form{
-    width: 50%;
+    width: 40%;
     
 }
+
+.price-prodct{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.ui.medium.image.image-modal{
+    width: 200px;
+}
+
+.description.name-desc{
+   text-align: center;
+}
+
+
+
+
+
+
+
+

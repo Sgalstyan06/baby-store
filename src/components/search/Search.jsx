@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Segment, Input } from "semantic-ui-react";
 import "./Search.css";
 
-export default function Search({searchProduct}) {
-    
+export default function Search({ searchProduct }) {
+  
+  const [inp, setInp] = useState();
+
+  useEffect(() => {
+    const idSearch = setTimeout(() => {
+      searchProduct(inp);
+    }, 1100);
+    return () => clearTimeout(idSearch);
+  }, [inp]);
+
   return (
     <div>
       <Segment className="search" inverted>
@@ -11,7 +20,7 @@ export default function Search({searchProduct}) {
           inverted
           placeholder="Search..."
           onChange={(e) => {
-            searchProduct(e.target.value);
+            setInp(e.target.value);
           }}
         />
       </Segment>

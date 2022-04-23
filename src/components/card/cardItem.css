@@ -10,3 +10,23 @@
     height: 60px;
     width: 100%;
 }
+
+.card-currency{
+    font-size: 10px;
+    
+    
+}
+.ui.centered.card.card .image:hover{
+    
+    transform: scale(1.1);
+    transition: 1s ease;
+    /* border: 2px solid rgb(130, 129, 129); */
+    
+}
+.ui.centered.card.card:hover{
+    
+    transform: scale(0.98);
+    transition: 1s ease;
+    border: 2px solid rgb(130, 129, 129);
+    
+}

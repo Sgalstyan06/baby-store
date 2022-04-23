@@ -33,7 +33,7 @@ function PendingTable({ list, changeStatus }) {
                   <Item.Extra>Phone {item.phone}</Item.Extra>
                 </Item.Content>
                 <Item.Content>
-                  count product {item.product.stock.count}
+                Available {item.product.stock.count}
                 </Item.Content>
 
                 <Item.Content>

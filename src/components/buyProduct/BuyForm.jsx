@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./BuyProduct.css";
 
 import { useForm } from "react-hook-form";
 import {
@@ -24,7 +25,7 @@ const FormFieldError = ({ userName, changeOptions }) => {
     
   }
   return (
-    <Form>
+    <Form >
       {/* <Form.Group widths='equal'> */}
       <Form.Field
         id="form-input-control-full-name"

@@ -1,70 +1,82 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button, Pagination } from "semantic-ui-react";
 import { getData, getProducts } from "../../services/api";
 
 import CardItem from "./CardItem";
+import Search from "../search/Search";
 import "./cards.css";
 
 const Cards = ({ pageDevider, setResponseInfo }) => {
   const [result, setResult] = useState([]);
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
-  const [searchProd,setSearchProd] = useState([]);
+  const [eventSearch, setEventSearch] = useState("");
   
 
+  const counyPage = useRef(null);
   useEffect(() => {
     (async function createPageinashion() {
-      let data = await getProducts();      
+      let data = await getProducts();
       setResult(data);
+      console.log("result", result);
     })();
   }, []);
 
+  
   useEffect(() => {
-    setProductsByPage(result.slice(start, start + pageDevider));
-  }, [start, result]);
+    setProductsByPage(
+      eventSearch
+        ? result.filter((item) => item.name.includes(eventSearch))
+        : result.slice(start, start + pageDevider)
+    );
+
+    
+  }, [start, result, eventSearch]);
+
 
   function goToPage(e, data) {
     // console.log(data.activePage);
     setStart(data.activePage * pageDevider - pageDevider);
   }
 
-  function searchProduct(event){
-      console.log(event);
+  function searchProduct(event) {
+    setEventSearch(event);
+    console.log("event", event);
   }
-  // console.log("result", result);
-  console.log("productsByPage",productsByPage);
-  return (<>
 
-    <div className="ui stackable three column grid productItems">
-      {productsByPage &&
-        productsByPage.length > 0 &&
-        productsByPage.map((item) => {
-          return (
-            <CardItem
-              item={item}
-              key={item.id}
-              description={item?.description.comment || ""}
-              image={item.img && item.img.length>0 && item.img[0].imagePath}
-              imageList={item.img} //try to add picture pagination
-              name={item.name}
-              price={item.price}
-              currency={item.currency}
-              setResponseInfo={setResponseInfo}
-              stock={item.stock.count}
-            />
-          );
-        })}
+  return (
+    <>
+      <Search searchProduct={searchProduct} />
+      <div className="ui stackable three column grid productItems">
+        {productsByPage &&
+          productsByPage.length > 0 &&
+          productsByPage.map((item) => {
+            return (
+              <CardItem
+                item={item}
+                key={item.id}
+                description={item?.description.comment || ""}
+                image={item.img && item.img.length > 0 && item.img[0].imagePath}
+                imageList={item.img} //try to add picture pagination
+                name={item.name}
+                price={item.price}
+                currency={item.currency}
+                setResponseInfo={setResponseInfo}
+                stock={item.stock.count}
+              />
+            );
+          })}
 
-      <div className="pagination-container">
-        {/* semantic pagination */}
-        <Pagination
-          defaultActivePage={1}
-          secondary
-          onPageChange={goToPage}
-          totalPages={Math.ceil(result.length / pageDevider)}
-        />
+        <div className="pagination-container">
+          
+          <Pagination
+            defaultActivePage={1}
+            secondary
+            onPageChange={goToPage}
+            totalPages={Math.ceil(result.length / pageDevider)}
+          />
+        </div>
       </div>
-    </div>
     </>
   );
 };

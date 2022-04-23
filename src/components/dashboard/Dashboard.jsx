@@ -66,6 +66,8 @@ function Dashboard() {
   useEffect(() => {
     if (user || responseInfo.length > 0) orderShow();
   }, [user, responseInfo]);
+
+  
   const { pendingProducts, allProducts } = adminData;
 
   async function changeStatus(status, order_id) {

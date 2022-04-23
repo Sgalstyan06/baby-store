@@ -17,19 +17,17 @@ function CardItem({
 }) {
   const { isAuthenticated, user } = useAuth0();
   return (
-    <Card centered>
+    <Card centered >
       <Image src={image} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
-        {/* <Card.Meta>
-          <span className="date">Joined in 2015</span>
-        </Card.Meta> */}
+        
         <Card.Description>{description} </Card.Description>
       </Card.Content>
-        <Card.Content>conut off {stock}</Card.Content>
+        <Card.Content>Available {stock}</Card.Content>
       <Card.Content extra className="buy-info">
         {price}
-        {currency}
+        <span className="card-currency">{currency}</span>
         {isAuthenticated ? (
           <BuyProduct
             item={item}

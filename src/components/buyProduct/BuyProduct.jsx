@@ -59,7 +59,7 @@ function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
     if (open === false) {
       resetOptions();
     }
-    console.log("disable", disable);
+    
     let status = false;
     for (let key in options) {
       if (!options[key] && key !== "paymentMethod") {
@@ -69,7 +69,6 @@ function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
 
     setDisable(status);
   }, [options, open]);
-  
 
   function resetOptions() {
     for (let key in options) {
@@ -79,8 +78,8 @@ function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
     }
   }
 
-  function changeOptions(prop) {    
-    setOptions({ ...options, ...prop });    
+  function changeOptions(prop) {
+    setOptions({ ...options, ...prop });
   }
 
   return (
@@ -89,30 +88,37 @@ function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={countProduct?(<Button color="green" inverted floated="right">
-      BUY
-    </Button>):(<Button disabled = {true} color="green" inverted floated="right">
-          BUY
-        </Button>)
-        
+      trigger={
+        countProduct ? (
+          <Button color="green" inverted floated="right">
+            BUY
+          </Button>
+        ) : (
+          <Button disabled={true} color="green" inverted floated="right">
+            BUY
+          </Button>
+        )
       }
     >
       <Modal.Content image>
-        <Image
-          size="medium"
-          src={
-            image ||
-            "https://react.semantic-ui.com/images/avatar/large/rachel.png"
-          }
-          wrapped
-        />
-        <Modal.Description>
+        <Modal.Header>
+          <Image className="image-modal"
+            size="medium"
+            src={
+              image ||
+              "https://react.semantic-ui.com/images/avatar/large/rachel.png"
+            }
+            wrapped
+          />
+           <p className="price-prodct">
+            {price}
+            <span className="currency">{item.currency}</span>
+          </p>
+        </Modal.Header>
+        <Modal.Description className="name-desc">
           <Header>{name}</Header>
           <p>{description}</p>
-          <p>
-            {price}
-            {item.currency}
-          </p>
+         
         </Modal.Description>
 
         <BuyForm userName={user.name} changeOptions={changeOptions} />
