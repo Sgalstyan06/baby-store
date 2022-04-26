@@ -93,3 +93,13 @@ input[type=file] {
     padding-top: 2rem;
 
 }
+
+.ui.items.pening .content{
+    padding-top: 1rem;
+    
+}
+
+ 
+ .ui.items.pening .content .description{
+     margin-top: 0;
+ }

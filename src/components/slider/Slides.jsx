@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import slidesData from "../../services/slideData";
 import "./slide.css";
 import { Button, Icon } from "semantic-ui-react";
 
 function Slides() {
+  const [changeSlide, setChangeSlide] = useState();
   const [slideData, setSlideData] = useState(slidesData());
   const [index, setIndex] = useState(0);
   function handleNext() {
-    index !== slideData.length - 1 ? setIndex(index+1) : setIndex(0);
+    index !== slideData.length - 1 ? setIndex(index + 1) : setIndex(0);
   }
 
   function handlePrev() {
     index !== 0 ? setIndex(index - 1) : setIndex(slideData.length - 1);
-    
-  
   }
-  
+
+  useEffect(() => {
+    const slideId = setInterval(handleNext, 3500);
+    return () => clearInterval(slideId);
+  }, [index]);
+
   return (
     <div>
       <div id="slide" className="card text-center">
         <div className="slideImg">
-          <img src={slideData[index].image} />
+          <img src={slideData[index] ? slideData[index].image : slideData[0].image} />
           <Button
             data-testid="button-prev"
             className="small left"

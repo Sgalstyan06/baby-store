@@ -1,8 +1,9 @@
-import img1 from "../img/img1.jpg";
-import img2 from "../img/img2.jpg";
-import img3 from "../img/img3.jpg";
-import img4 from "../img/img4.jpg";
-import img5 from "../img/img5.jpg";
+import img1 from "../img/slide20.jpg";
+import img2 from "../img/slide16.jpg";
+import img3 from "../img/slide17.jpg";
+import img4 from "../img/slide18.jpg";
+import img5 from "../img/slide19.jpg";
+
 
 const images = {
   img1: img1,

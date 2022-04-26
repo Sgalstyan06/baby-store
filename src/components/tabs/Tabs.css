@@ -2,18 +2,10 @@
     /* width: 70%; */
 }
 
-/* .ui.dropdown>.text */
-/* .ui.dropdown{
-    background-color: gainsboro;
-} */
-/* .ui.top.left.pointing.dropdown.select-status{
-    display: flex;
-    justify-content: center;
-} */
 .ui.top.left.pointing.dropdown.select-status .divider.text{
-    background-color: #e1e6e3;
+    background-color: #8f9792;
     border-radius: 3px;
-    width: 35%;
+    width: 40%;
     color: white;
     text-align: center;
     margin-bottom: 1rem;;

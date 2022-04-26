@@ -11,8 +11,6 @@ const Tabs = ({
   uploadImg,
   setResponseInfo,
 }) => {
-  // console.log("pendingProducts", pendingProducts);
-
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
   const [result, setResult] = useState([]);
@@ -20,67 +18,54 @@ const Tabs = ({
   const [pendingPage, setPendingPage] = useState([]);
   const [startForPandingPage, setStartForPandingPage] = useState(0);
   const [resultPending, setResultPending] = useState([]);
-   console.log("state is change");
-  
-  const [status,setStatus] = useState("All");
-  // const [selectProdBySatus, setSelectProdBySatus] = useState([]); //added filter
+
+  const [status, setStatus] = useState("All");
 
   const pageDevider = 4;
+
+  
+  useEffect(() => {
+    if (allProducts && allProducts.length > 0) setResult(allProducts);
+  }, [allProducts]);
 
   useEffect(() => {
     if (result && result.length > 0)
       setProductsByPage(result.slice(start, start + pageDevider));
   }, [start, result]);
 
-  useEffect(() => {
-    if (allProducts && allProducts.length > 0) setResult(allProducts);
-  }, [allProducts]);
-
-  function goToPage(e, data) {
-    setStart(data.activePage * pageDevider - pageDevider);
-  }
 
   useEffect(() => {
-    // if(pendingProducts && pendingProducts.length>0){//added for filter
-    // if (resultPending && resultPending.length > 0)
-    
-
     setPendingPage(
       resultPending.slice(
         startForPandingPage,
         startForPandingPage + pageDevider
       )
     );
-    // }
   }, [startForPandingPage, resultPending]);
 
   useEffect(() => {
-    if (pendingProducts && pendingProducts.length > 0){
-      
+    if (pendingProducts && pendingProducts.length > 0) {
       setResultPending(pendingProducts);
     }
-     
   }, [pendingProducts]);
 
+  function goToPage(e, data) {
+    setStart(data.activePage * pageDevider - pageDevider);
+  }
+
   function goToPagePending(e, data) {
-    
     setStartForPandingPage(data.activePage * pageDevider - pageDevider);
   }
 
   function selectOrdersByStatus(status) {
-     
-     
     pendingProducts &&
-      pendingProducts.length > 0 &&      
-      setResultPending([...pendingProducts.filter((item) => item.orderStatus == status)])
-      
-      
-    // SelectProdBySatus
+      pendingProducts.length > 0 &&
+      setResultPending([
+        ...pendingProducts.filter((item) => item.orderStatus == status),
+      ]);
   }
-  function changeStartValue(){
-    
+  function changeStartValue() {
     setStartForPandingPage(0);
-    
   }
   // console.log("resultPending",resultPending);
   const panes = [
@@ -108,19 +93,22 @@ const Tabs = ({
     },
     {
       menuItem: "Pending",
-      
+
       render: () => (
         <>
-          <Dropdown className="select-status" pointing="top left" text={`Select order By Status ${status}`}>
+          <Dropdown
+            className="select-status"
+            pointing="top left"
+            text={`Select order By Status ${status}`}
+          >
             <Dropdown.Menu>
               <Dropdown.Item
                 onClick={() => {
                   changeStartValue();
                   selectOrdersByStatus("PENDING");
-                  setStatus( "PENDING");
+                  setStatus("PENDING");
                 }}
                 text="Select All Pending Orders"
-                // icon="plus"
               />
               <Dropdown.Item
                 onClick={() => {
@@ -129,37 +117,30 @@ const Tabs = ({
                   setStatus("UNPAID");
                 }}
                 text="Select All UNPAID Orders"
-                // icon="plus"
               />
               <Dropdown.Item
                 onClick={() => {
                   changeStartValue();
                   selectOrdersByStatus("SENT");
                   setStatus("SENT");
-                  
                 }}
                 text="Select All Sent Orders"
-                // icon="calendar"
               />
               <Dropdown.Item
                 onClick={() => {
                   changeStartValue();
                   selectOrdersByStatus("PAID");
                   setStatus("PAID");
-                  
                 }}
                 text="Select All Paid Orders"
-                // icon="calendar"
               />
               <Dropdown.Item
                 onClick={() => {
                   changeStartValue();
                   selectOrdersByStatus("DONE");
                   setStatus("DONE");
-                  
                 }}
                 text="Select All Done Orders"
-                // icon="calendar"
               />
             </Dropdown.Menu>
           </Dropdown>

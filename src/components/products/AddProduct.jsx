@@ -5,7 +5,6 @@ import AddProductForm from "./AddProductForm";
 import { confirmAddProduct } from "../../services/api";
 import "./Products.css";
 
-
 function AddProduct({ setResponseInfo }) {
   const { error, isAuthenticated, isLoading, user, getAccessTokenSilently } =
     useAuth0();
@@ -22,6 +21,7 @@ function AddProduct({ setResponseInfo }) {
   function changeOptions(prop) {
     setOptions({ ...options, ...prop });
   }
+  
   async function confirmProduct(userId) {
     try {
       const token = await getAccessTokenSilently();

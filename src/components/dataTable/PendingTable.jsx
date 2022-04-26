@@ -15,7 +15,7 @@ function PendingTable({ list, changeStatus }) {
         list.length > 0 &&
         list.map((item) => {
           return (
-            <Item.Group key={nanoid()}>
+            <Item.Group className="pening" key={nanoid()}>
               <Item>
                 <Item.Image
                   size="tiny"

@@ -211,13 +211,14 @@ function Header() {
         let authorised;
         const isExist = await isUserExists(user.sub);
         console.log("isExists", isExist);
-        if (!isExist || (isExist.httpStatus === "OK" && !isExist.info.exists)) {
+        debugger;
+        if (!isExist || (isExist.httpStatus === "OK" && isExist.info.exists === "false")) {
           const token = await getAccessTokenSilently();
           authorised = await authoriseUser(user, token);
         }
         if (
           (authorised && authorised.httpStatus === "OK") ||
-          isExist.info.exists
+          isExist.info.exists === "true"
         ) {
           localStorage.setItem("autoriseUser", user.nickname);
         }

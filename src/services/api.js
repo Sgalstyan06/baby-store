@@ -168,7 +168,7 @@ export async function imgUpdate(productId, file, token, userId) {
   formData.append(
     "image",
     file
-    // { type: "multipart/form-data" }
+    
   );
 
   for (var key of formData.entries()) {
@@ -178,9 +178,7 @@ export async function imgUpdate(productId, file, token, userId) {
   try {
     const response = await fetch(`${apiURL}image/add/${productId}`, {
       method: "POST",
-      headers: {
-        // Authorization: `Bearer ${token}`,
-        // "Content-Type": "multipart/form-data",
+      headers: {        
         userId: userId,
       },
 

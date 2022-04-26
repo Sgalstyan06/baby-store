@@ -11,9 +11,9 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
   const [productsByPage, setProductsByPage] = useState([]);
   const [start, setStart] = useState(0);
   const [eventSearch, setEventSearch] = useState("");
-  
+  // const [searchShowProduct, setSearchShowProduct] = useState([]);
+  // const numberPage = useRef(null);
 
-  const counyPage = useRef(null);
   useEffect(() => {
     (async function createPageinashion() {
       let data = await getProducts();
@@ -22,17 +22,21 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
     })();
   }, []);
 
-  
   useEffect(() => {
     setProductsByPage(
       eventSearch
         ? result.filter((item) => item.name.includes(eventSearch))
         : result.slice(start, start + pageDevider)
     );
-
-    
+    // if(!eventSearch){
+    //   setProductsByPage(result.slice(start, start + pageDevider))
+    //   numberPage.current = Math.ceil(result.length / pageDevider);
+    // }else{
+    //   setSearchShowProduct( result.filter((item) => item.name.includes(eventSearch)))
+    //   setProductsByPage(searchShowProduct.slice(start, start + pageDevider));
+    //   numberPage.current = Math.ceil(searchShowProduct.length / pageDevider);
+    // }
   }, [start, result, eventSearch]);
-
 
   function goToPage(e, data) {
     // console.log(data.activePage);
@@ -68,13 +72,17 @@ const Cards = ({ pageDevider, setResponseInfo }) => {
           })}
 
         <div className="pagination-container">
-          
-          <Pagination
-            defaultActivePage={1}
-            secondary
-            onPageChange={goToPage}
-            totalPages={Math.ceil(result.length / pageDevider)}
-          />
+          {!eventSearch ? (
+            <Pagination
+              defaultActivePage={1}
+              secondary
+              onPageChange={goToPage}
+              totalPages={Math.ceil(result.length / pageDevider)}
+              // totalPages={numberPage.current}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>
