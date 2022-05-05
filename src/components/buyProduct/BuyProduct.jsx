@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Header, Image, Modal, Segment } from "semantic-ui-react";
+import { Button, Header, Image, Modal, Segment } from "semantic-ui-react";
 import BuyForm from "./BuyForm";
 import "./BuyProduct.css";
 import { confirmOrder } from "../../services/api";
@@ -7,7 +7,7 @@ import { getOrdersByUserId } from "../../services/api";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
-  const { error, isAuthenticated, isLoading, user, getAccessTokenSilently } =
+  const {  user, getAccessTokenSilently } =
     useAuth0();
 
   const { description, image, name, price } = productInfo;
@@ -17,9 +17,6 @@ function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
   const [disable, setDisable] = useState(true);
   const [countProduct, setCountProduct] = useState(stock);
 
-  // useEffect(()=>{},[stock])
-
-  // console.log("item",item);
   async function confirmAction() {
     try {
       const token = await getAccessTokenSilently();
@@ -44,16 +41,7 @@ function BuyProduct({ productInfo, item, setResponseInfo, stock }) {
       console.log(error);
     }
   }
-  // useEffect(() => {
-  //   let status = false;
-  //   for (let key in options) {
-  //     // console.log("options[key]",options[key]);
-  //     if (!options[key]) {
-  //       status = true;
-  //     }
-  //   }
-  //   setDisable(status);
-  // }, [options]);
+  
 
   useEffect(() => {
     if (open === false) {

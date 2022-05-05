@@ -162,8 +162,7 @@ export async function confirmAddProduct(productObj, userId, token) {
   }
 }
 
-export async function imgUpdate(productId, file, token, userId) {
-  console.log("imgUpdatefile", file);
+export async function imgUpdate(productId, file, token, userId) {  
   const formData = new FormData();
   formData.append(
     "image",

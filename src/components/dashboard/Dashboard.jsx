@@ -15,7 +15,7 @@ import AddProduct from "../products/AddProduct";
 import Tabs from "../tabs/Tabs";
 import { ADMIN, UNPAID } from "../../services/constants";
 import DataTable from "../dataTable/DataTable";
-import DataTableForUsser from "../dataTable/DataTableForUsser"; 
+import DataTableForUsser from "../dataTable/DataTableForUsser";
 
 function Dashboard() {
   const { error, isAuthenticated, isLoading, user, getAccessTokenSilently } =
@@ -28,13 +28,13 @@ function Dashboard() {
     try {
       const token = await getAccessTokenSilently();
       let data = null;
-      // console.log("user",user);
+
       if (user && user[`${domainName}roles`].includes(ADMIN)) {
         const dataResult = await Promise.all([
           getProducts(),
           getAllOrders(user.sub, token, UNPAID),
         ]);
-        // console.log("dataResult", dataResult);
+
         if (dataResult && dataResult[1] && dataResult[1].status === 401) {
           const authorised = await authoriseUser(user, token);
         } else {
@@ -43,15 +43,13 @@ function Dashboard() {
             allProducts: dataResult[0],
             pendingProducts: dataResult[1],
           }));
-          // console.log("adminData", adminData);
         }
       } else {
         data = await getOrders(user.sub, token);
-        // console.log("user as a user ",user);
-        console.log("data",data);
+
+        console.log("data", data);
         if (data && Array.isArray(data)) {
           if (data.length !== 0) setOrderList(data);
-
         } else if (data && data.status === 401) {
           const authorised = await authoriseUser(user, token);
         } else {
@@ -67,7 +65,6 @@ function Dashboard() {
     if (user || responseInfo.length > 0) orderShow();
   }, [user, responseInfo]);
 
-  
   const { pendingProducts, allProducts } = adminData;
 
   async function changeStatus(status, order_id) {
@@ -79,8 +76,7 @@ function Dashboard() {
         order_id,
         status
       );
-      orderShow();//I put this function call
-      // console.log("changeResult", changeResult);
+      orderShow();
     } catch (error) {
       console.log("sxal es arel");
     }
@@ -90,7 +86,6 @@ function Dashboard() {
     try {
       const token = await getAccessTokenSilently();
       const responseImg = await imgUpdate(productId, file, token, user.sub);
-      // console.log(responseImg);
 
       if (responseImg.httpStatus && responseImg.httpStatus === "OK") {
         setResponseInfo(responseImg.message);
@@ -105,7 +100,7 @@ function Dashboard() {
   function handleDismiss() {
     setResponseInfo("");
   }
-  //  console.log("user", user);
+  console.log("user", user);
   //  console.log("orderList",orderList);
   return (
     <div className="dashboard ui container">
@@ -124,14 +119,11 @@ function Dashboard() {
             pendingProducts={pendingProducts}
             allProducts={allProducts}
             changeStatus={changeStatus}
-            setResponseInfo={setResponseInfo} 
+            setResponseInfo={setResponseInfo}
           />
-          {/* paginateion add here to out div block */}
-          
         </>
       ) : (
         <DataTableForUsser list={orderList} />
-        
       )}
     </div>
   );

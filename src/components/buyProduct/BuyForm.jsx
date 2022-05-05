@@ -53,13 +53,7 @@ const FormFieldError = ({ userName, changeOptions }) => {
         placeholder="Phone number"
         name="phone"
         type="number"
-        onChange={(e) => {
-          handleChange(e)
-          // const idSetPhone =setTimeout(()=>{
-            // handleChange(e);
-          // },1200) ;
-          // return ()=>clearTimeout(idSetPhone)
-        }}
+        onChange={(e) =>handleChange(e)}
       />
 
       <Form.Field>

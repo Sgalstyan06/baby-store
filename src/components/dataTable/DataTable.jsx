@@ -24,7 +24,7 @@ function DataTable({ list, uploadImg, setResponseInfo }) {
   }
 
   useEffect(() => {}, [imgFile]);
-  // setResponseInfo("product creates");
+  
 console.log("list",list);
   return (
     <div>

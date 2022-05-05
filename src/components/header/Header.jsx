@@ -25,20 +25,20 @@ const NavBarMobile = (props) => {
 
   return (
     <Sidebar.Pushable>
-      <Sidebar.Pusher id = "left-pusher" dimmed={visible} onClick={onPusherClick}>
-      <Sidebar
-        as={Menu}
-        animation="overlay"
-        icon="labeled"
-        items={leftItems}
-        inverted
-        vertical
-        visible={visible}
-        key={nanoid()}
-      />
+      <Sidebar.Pusher id="left-pusher" dimmed={visible} onClick={onPusherClick}>
+        <Sidebar
+          as={Menu}
+          animation="overlay"
+          icon="labeled"
+          items={leftItems}
+          inverted
+          vertical
+          visible={visible}
+          key={nanoid()}
+        />
       </Sidebar.Pusher>
-      
-      <Sidebar.Pusher >
+
+      <Sidebar.Pusher>
         <Menu fixed="top" inverted>
           <Menu.Item key={nanoid()}>
             <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
@@ -93,42 +93,6 @@ const NavBarDesktop = (props) => {
   );
 };
 
-// class NavBar extends React.Component {
-//   state = {
-//     visible: false,
-//   };
-
-//   handlePusher = () => {
-//     const { visible } = this.state;
-
-//     if (visible) this.setState({ visible: false });
-//   };
-
-//   handleToggle = () => this.setState({ visible: !this.state.visible });
-
-//   render() {
-//     const { leftItems, rightItems } = this.props;
-//     const { visible } = this.state;
-
-//     return (
-//       <div className="customHeader">
-//         <Media at="mobile">
-//           <NavBarMobile
-//             leftItems={leftItems}
-//             onPusherClick={this.handlePusher}
-//             onToggle={this.handleToggle}
-//             rightItems={rightItems}
-//             visible={visible}
-//           ></NavBarMobile>
-//         </Media>
-
-//         <Media greaterThan="mobile">
-//           <NavBarDesktop leftItems={leftItems} rightItems={rightItems} />
-//         </Media>
-//       </div>
-//     );
-//   }
-// }
 function NavBar({ leftItems, rightItems }) {
   const [visible, setVisible] = useState(false);
 
@@ -158,7 +122,6 @@ function NavBar({ leftItems, rightItems }) {
 const leftItems = [
   { as: Link, to: "/", content: "Home", key: "home" },
   { as: Link, to: "/products", content: "Products", key: "products" },
- 
 ];
 
 const rightItems = [{ as: Link, to: "/login", content: "Login", key: "login" }];
@@ -210,9 +173,11 @@ function Header() {
       ) {
         let authorised;
         const isExist = await isUserExists(user.sub);
-        console.log("isExists", isExist);
-        debugger;
-        if (!isExist || (isExist.httpStatus === "OK" && isExist.info.exists === "false")) {
+
+        if (
+          !isExist ||
+          (isExist.httpStatus === "OK" && isExist.info.exists === "false")
+        ) {
           const token = await getAccessTokenSilently();
           authorised = await authoriseUser(user, token);
         }
